@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<settings>
+	<!-- 테이블의 컬럼(대소문자 구분 없음) 
+				-> 자바의 필드(대소문자 구분)-->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!-- java의 null을 어떤식으로 처리할지 결정 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>  
+	
+	<typeAliases>
+		<!-- 별칭 설정 -->
+		<package name="com.yedam.jhl.book.service"/>
+		<package name="com.yedam.jhl.user.service"/>
+	</typeAliases>
+	
+	<typeHandlers>
+		<typeHandler javaType="java.sql.Date" handler="org.apache.ibatis.type.DateTypeHandler"/>
+	</typeHandlers>
+	
+</configuration>
