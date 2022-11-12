@@ -1,13 +1,16 @@
 package com.yedam.java.free.web;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yedam.java.free.service.FBService;
@@ -15,6 +18,7 @@ import com.yedam.java.free.service.FBVO;
 
 @Controller
 @RequestMapping("freeBoard")
+@CrossOrigin("*")
 public class FreeBoardController {
 	@Autowired
 	FBService fbService;
@@ -40,6 +44,16 @@ public class FreeBoardController {
 		
 		return "freeBoard/boardList";
 	}
+	
+	//ajax응답
+	@ResponseBody
+	@GetMapping("ajax/list")
+	public List<FBVO> ajaxList() {
+		return fbService.selectBoardList();
+		
+	}
+	
+	
 	//단건조회
 	@GetMapping("info")
 	public String selectBoardInfo(FBVO fbVO, Model model) {
